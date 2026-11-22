@@ -1,0 +1,100 @@
+[
+  {
+    "iteration": 1,
+    "name": "建立基线",
+    "change": {
+      "flow_div": 4,
+      "strength": 1.0,
+      "occlusion_sensitivity": 0.5,
+      "detect_threshold": 0.15,
+      "low_latency": true
+    },
+    "result": "基线可用，但快速转向仍有残影。",
+    "decision": "继续"
+  },
+  {
+    "iteration": 2,
+    "name": "开启低延迟",
+    "change": {
+      "low_latency": true
+    },
+    "result": "减少一拍等待，输入更跟手。",
+    "decision": "保留"
+  },
+  {
+    "iteration": 3,
+    "name": "光流改为 1/8",
+    "change": {
+      "flow_div": 8
+    },
+    "result": "GPU 压力最低，但快速移动边缘变软，残影更明显。",
+    "decision": "淘汰"
+  },
+  {
+    "iteration": 4,
+    "name": "光流改为 1/2",
+    "change": {
+      "flow_div": 2
+    },
+    "result": "快速转向的边缘匹配更稳定，GPU 占用上升。",
+    "decision": "保留"
+  },
+  {
+    "iteration": 5,
+    "name": "插帧强度 0.85",
+    "change": {
+      "strength": 0.85
+    },
+    "result": "错误运动较少，但运动连续性下降，容易出现淡化感。",
+    "decision": "备用"
+  },
+  {
+    "iteration": 6,
+    "name": "插帧强度 1.00",
+    "change": {
+      "strength": 1.0
+    },
+    "result": "运动连续性最好，配合遮挡保护使用。",
+    "decision": "保留"
+  },
+  {
+    "iteration": 7,
+    "name": "遮挡保护 0.35",
+    "change": {
+      "occlusion_sensitivity": 0.35
+    },
+    "result": "运动更激进，但车辆和建筑边缘残影增加。",
+    "decision": "淘汰"
+  },
+  {
+    "iteration": 8,
+    "name": "遮挡保护 0.65",
+    "change": {
+      "occlusion_sensitivity": 0.65
+    },
+    "result": "不可靠区域更快回退，残影减少。",
+    "decision": "保留"
+  },
+  {
+    "iteration": 9,
+    "name": "新帧阈值 0.10",
+    "change": {
+      "detect_threshold": 0.1
+    },
+    "result": "连续晃动时更快识别输入更新，跳帧感降低。",
+    "decision": "保留"
+  },
+  {
+    "iteration": 10,
+    "name": "最终组合",
+    "change": {
+      "flow_div": 2,
+      "strength": 1.0,
+      "occlusion_sensitivity": 0.65,
+      "detect_threshold": 0.1,
+      "low_latency": true
+    },
+    "result": "以残影和快速运动为主要目标的最终配置。",
+    "decision": "采用"
+  }
+]

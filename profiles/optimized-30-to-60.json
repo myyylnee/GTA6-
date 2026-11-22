@@ -1,0 +1,27 @@
+{
+  "name": "GTA6 高速运动 30→60",
+  "purpose": "优先减少快速转视角和剧烈晃动时的残影",
+  "source_fps": 30,
+  "canvas_fps": 60,
+  "resolution": "1920x1080",
+  "filter": {
+    "flow_div": 2,
+    "strength": 1.0,
+    "occlusion_sensitivity": 0.65,
+    "detect_threshold": 0.10,
+    "low_latency": true,
+    "debug_mode": 0
+  },
+  "display_names": {
+    "flow_div": "1/2",
+    "strength": "100%",
+    "occlusion_sensitivity": "65%",
+    "detect_threshold": "0.10%",
+    "low_latency": "开启"
+  },
+  "selection_reason": "高速运动优先使用更高光流精度；提高遮挡保护以减少不可靠运动向量造成的拖影；降低新帧阈值以更快识别连续输入帧。",
+  "fallback": {
+    "flow_div": 4,
+    "reason": "如果 OBS 渲染耗时或掉帧上升，退回 1/4。"
+  }
+}
